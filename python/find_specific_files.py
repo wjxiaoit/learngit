@@ -32,8 +32,15 @@ def find_specific_files(root,patterns=['*'],exclude_dirs=[]):
 
 
 #查看目录树中，除 test 目录以外其他目录下的所有图片：
-patterns = ['*.jpg']
-exclude_dirs = ['test']
+#patterns = ['*.jpg']
+#exclude_dirs = ['test']
 
-for item in find_specific_files('/root/xm',patterns,exclude_dirs):
-    print(item)
+#for item in find_specific_files('/root/xm',patterns,exclude_dirs):
+#    print(item)
+
+#找出目录里最大的十个文件：
+
+files = {name: os.path.getsize(name) for name in find_specific_files('.')}
+result = sorted(files.items(),key=lambda d: d[1],reverse=True)[:10]
+for i ,t in enumerate(result,1):
+    print(i,t[0],t[1])
